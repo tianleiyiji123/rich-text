@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /**
+     * 合并对象
+     * @param    {Object}   obj1
+     * @param    {Object}   obj2
+     * @return   {Object}
+     */
+    function merge(obj1, obj2) {
+        for (let i in obj2) {
+            console.log(i)
+            obj1[i] = {}.toString.call(obj2[i]) === "[object Object]" ? merge({}, obj2[i]) : obj2[i];
+        }
+        return obj1;
+    }
+
+    var obj = {
+        name:"qwe",
+        age:123
+    },
+            obj1 = {
+            };
+    merge(obj,obj1);
+    console.dir(obj);
+
+    console.log([1,2,4,3,5].filter(x => x>2));
+
+
+    function test() {
+        console.log(foo);
+        console.log(bar);
+
+        var foo = 'Hello';
+        console.log(foo);
+        var bar = function () {
+            return 'world';
+        }
+
+        function foo() {
+            return 'hello';
+        }
+    }
+
+    test();
+
+    (function () {
+        var a = 10;
+        var b = 20;
+
+        function add(num1, num2) {
+            var num1 = !!num1 ? num1 : a;
+            var num2 = !!num2 ? num2 : b;
+
+            return num1 + num2;
+        }
+
+        window.add = add;
+    })();
+
+    console.log(add());
+
+    for (var i=1; i<=5; i++) {
+        (function (i) {setTimeout( function timer() {
+            console.log(i);
+        }, i*1000 )})(i);
+    }
+
+</script>
+</body>
+</html>
